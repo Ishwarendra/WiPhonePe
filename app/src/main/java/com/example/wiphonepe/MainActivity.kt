@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             WIPhonePeTheme {
                 Column {
-                    Header(modifier = Modifier.fillMaxWidth())
+                    Header(modifier = Modifier.fillMaxgitWidth())
                     ShopItemGridScreen(items)
                 }
             }
