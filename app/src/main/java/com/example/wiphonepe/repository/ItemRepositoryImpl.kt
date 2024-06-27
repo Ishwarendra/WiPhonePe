@@ -7,12 +7,12 @@ class ItemRepositoryImpl : ItemRepository {
     override suspend fun getAllItems(): List<Item> {
         val items = mutableListOf<Item>()
         for (i in 1..10) {
-            val shipSameDay = i < 2;
+            val shipSameDay = i < 2 || i == 7;
             items.add(
                 Item(
                     name = "Item Name $i",
                     sameDayShipping = shipSameDay,
-                    price = Random.nextDouble(10.0, 1000.0),
+                    price = Random.nextInt(10, 100) * 10.00,
                 )
             )
         }
