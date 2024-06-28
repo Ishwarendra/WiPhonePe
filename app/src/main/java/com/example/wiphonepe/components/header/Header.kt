@@ -31,6 +31,9 @@ fun Header(
             .statusBarsPadding()
             .padding(horizontal = 30.dp)
     ) {
+        FilterDialog(
+            onDismiss = {}
+        )
         Row (
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -47,7 +50,7 @@ fun Header(
                 fontSize = 18.sp,
                 modifier = Modifier
                     .clip(RoundedCornerShape(8.dp))
-                    .clickable {  }
+                    .clickable { }
                     .padding(
                         vertical = 4.dp,
                         horizontal = 12.dp
