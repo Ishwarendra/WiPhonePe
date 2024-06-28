@@ -13,4 +13,8 @@ data class Item(
             pattern = query.lowercase().replace(" ", "")
         )
     }
+
+    fun priceIsBetween(start: Double, end: Double): Boolean {
+        return price in start..end
+    }
 }

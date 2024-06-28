@@ -29,9 +29,14 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 fun MainScreen(
     navController: NavHostController = rememberNavController()
 ) {
+    val viewModel: ItemViewModel = viewModel(factory = ItemViewModel.Factory)
+    val items by viewModel.items.collectAsState()
+
     Scaffold(
         topBar = {
-            Header(modifier = Modifier.fillMaxWidth())
+            Header(
+                modifier = Modifier.fillMaxWidth(),
+            )
         },
         bottomBar = {
             BottomNavigationBar(
@@ -39,9 +44,6 @@ fun MainScreen(
             )
         }
     ) { innerPadding ->
-        val viewModel: ItemViewModel = viewModel(factory = ItemViewModel.Factory)
-        val items by viewModel.items.collectAsState()
-
         val focusManager = LocalFocusManager.current
         val interactionSource = remember { MutableInteractionSource() }
 

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -18,22 +19,37 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.wiphonepe.R
+import com.example.wiphonepe.viewmodel.DialogViewModel
+import com.example.wiphonepe.viewmodel.ItemViewModel
 
 @Composable
 fun Header(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val headerColor = colorResource(id = R.color.light_blue)
+    val viewModel: DialogViewModel = viewModel()
+    val showDialog = viewModel.showDialog.collectAsState().value
+
+    val itemViewModel: ItemViewModel = viewModel(factory = ItemViewModel.Factory)
+    val sameDayShipping = itemViewModel.filters.collectAsState().value.sameDayShipping
+
     Column (
         modifier = modifier
             .background(color = headerColor)
             .statusBarsPadding()
             .padding(horizontal = 30.dp)
     ) {
-        FilterDialog(
-            onDismiss = {}
-        )
+        if (showDialog) {
+            FilterDialog(
+                onDismiss = viewModel::dismissDialog,
+                toggleShipping = itemViewModel::toggleShipping,
+                updatePriceRange = itemViewModel::updatePriceRange,
+                checked = sameDayShipping,
+                resetFilter = itemViewModel::resetFilter
+            )
+        }
         Row (
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -50,7 +66,9 @@ fun Header(
                 fontSize = 18.sp,
                 modifier = Modifier
                     .clip(RoundedCornerShape(8.dp))
-                    .clickable { }
+                    .clickable {
+                        viewModel.showDialog()
+                    }
                     .padding(
                         vertical = 4.dp,
                         horizontal = 12.dp
