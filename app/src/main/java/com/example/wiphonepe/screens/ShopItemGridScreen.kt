@@ -15,10 +15,11 @@ import com.example.wiphonepe.model.Item
 @Composable
 fun ShopItemGridScreen(
     items: List<Item>,
+    modifier: Modifier = Modifier
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 100.dp),
-        modifier = Modifier.fillMaxSize(),
+        modifier = modifier,
         contentPadding = PaddingValues(
             horizontal = 20.dp,
             vertical = 32.dp
