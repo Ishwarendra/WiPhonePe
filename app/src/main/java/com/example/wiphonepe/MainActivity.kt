@@ -5,10 +5,8 @@ import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.example.wiphonepe.repository.ItemRepositoryImpl
 import com.example.wiphonepe.screens.MainScreen
 import com.example.wiphonepe.ui.theme.WIPhonePeTheme
-import com.example.wiphonepe.viewmodel.ItemViewModel
 
 //@AndroidEntryPoint
 class MainActivity : ComponentActivity() {

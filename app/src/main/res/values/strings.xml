@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">WI PhonePe</string>
     <string name="Rs">\u20B9</string>
+    <string name="same_day_shipping">Same Day Shipping</string>
+    <string name="close">Close</string>
+    <string name="reset">Reset</string>
+    <string name="search">Search</string>
+    <string name="price">Price</string>
+    <string name="type">Type</string>
 </resources>

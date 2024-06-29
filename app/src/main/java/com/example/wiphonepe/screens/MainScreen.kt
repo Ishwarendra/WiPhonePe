@@ -10,9 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -23,7 +21,6 @@ import com.example.wiphonepe.components.bottomnavigationbar.BottomNavigationBar
 import com.example.wiphonepe.components.header.Header
 import com.example.wiphonepe.navigation.Screen
 import com.example.wiphonepe.viewmodel.ItemViewModel
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun MainScreen(
