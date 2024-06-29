@@ -4,7 +4,7 @@ import com.example.wiphonepe.util.isSubsequence
 
 data class Item(
     val name: String,
-    val price: Double,
+    val price: Float,
     val sameDayShipping: Boolean = false,
 ) {
     fun doesMatchSearchQuery(query: String): Boolean {
@@ -14,7 +14,7 @@ data class Item(
         )
     }
 
-    fun priceIsBetween(start: Double, end: Double): Boolean {
+    fun priceIsBetween(start: Float, end: Float): Boolean {
         return price in start..end
     }
 }

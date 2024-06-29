@@ -71,9 +71,10 @@ class ItemViewModel (
 
     fun resetFilter() {
         _filters.value = FilterData()
+        _searchText.value = ""
     }
 
-    fun updatePriceRange(minPrice: Double, maxPrice: Double) {
+    fun updatePriceRange(minPrice: Float, maxPrice: Float) {
         val sameDayShip = _filters.value.sameDayShipping
         _filters.value = FilterData(
             sameDayShipping = sameDayShip,
@@ -82,7 +83,7 @@ class ItemViewModel (
         )
     }
 
-    fun toggleShipping() {
+    fun toggleShippingDay() {
         val minPrice = _filters.value.minPrice
         val maxPrice = _filters.value.maxPrice
         _filters.value = FilterData(

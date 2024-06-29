@@ -42,13 +42,14 @@ import androidx.compose.ui.window.DialogProperties
 import com.example.wiphonepe.R
 import com.example.wiphonepe.components.common.PriceRangeFilter
 import com.example.wiphonepe.components.common.ToggleSwitch
+import com.example.wiphonepe.data.FilterData
 
 @Composable
 fun FilterDialog(
     onDismiss: () -> Unit,
-    toggleShipping: () -> Unit,
-    updatePriceRange: (Double, Double) -> Unit,
-    checked: Boolean,
+    toggleShippingDay: () -> Unit,
+    updatePriceRange: (Float, Float) -> Unit,
+    filters: FilterData,
     resetFilter: () -> Unit
 ) {
     Dialog(
@@ -97,6 +98,18 @@ fun FilterDialog(
                 )
 
                 Text(
+                    text = "Search by Name",
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                )
+
+                SearchBar(
+                    shape = RoundedCornerShape(8.dp),
+                    modifier = Modifier.padding(top = 8.dp, bottom = 12.dp)
+                )
+
+                Text(
                     text = "Type",
                     color = Color.Black,
                     fontSize = 16.sp,
@@ -119,8 +132,8 @@ fun FilterDialog(
                         color = Color.Black
                     )
                     ToggleSwitch(
-                        checked,
-                        toggleShipping
+                        filters.sameDayShipping,
+                        toggleShippingDay
                     )
                 }
 
@@ -133,21 +146,26 @@ fun FilterDialog(
 
                 Spacer(modifier = Modifier.padding(bottom = 8.dp))
 
-                PriceRangeFilter()
+                PriceRangeFilter(
+                    minPrice = filters.minPrice,
+                    maxPrice = filters.maxPrice,
+                    updatePriceRange = updatePriceRange,
+                    modifier = Modifier.padding(bottom = 20.dp)
+                )
 
                 Spacer(modifier = Modifier.padding(vertical = 8.dp))
 
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = onDismiss,
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(4.dp),
+                    shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black,
                         contentColor = Color.White
                     )
                 ) {
                     Text(
-                        text = "Apply",
+                        text = "Close",
                         fontWeight = FontWeight.Bold,
                     )
                 }
@@ -155,9 +173,9 @@ fun FilterDialog(
                 Spacer(modifier = Modifier.padding(vertical = 4.dp))
 
                 TextButton(
-                    onClick = { /*TODO*/ },
+                    onClick = resetFilter,
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(4.dp),
+                    shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.textButtonColors(
                         contentColor = Color.Black
                     )

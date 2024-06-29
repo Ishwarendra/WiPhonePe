@@ -33,7 +33,7 @@ fun Header(
     val showDialog = viewModel.showDialog.collectAsState().value
 
     val itemViewModel: ItemViewModel = viewModel(factory = ItemViewModel.Factory)
-    val sameDayShipping = itemViewModel.filters.collectAsState().value.sameDayShipping
+    val filters = itemViewModel.filters.collectAsState().value
 
     Column (
         modifier = modifier
@@ -44,9 +44,9 @@ fun Header(
         if (showDialog) {
             FilterDialog(
                 onDismiss = viewModel::dismissDialog,
-                toggleShipping = itemViewModel::toggleShipping,
+                filters = filters,
+                toggleShippingDay = itemViewModel::toggleShippingDay,
                 updatePriceRange = itemViewModel::updatePriceRange,
-                checked = sameDayShipping,
                 resetFilter = itemViewModel::resetFilter
             )
         }

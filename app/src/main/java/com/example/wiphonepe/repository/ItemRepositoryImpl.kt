@@ -6,13 +6,14 @@ import kotlin.random.Random
 class ItemRepositoryImpl : ItemRepository {
     override suspend fun getAllItems(): List<Item> {
         val items = mutableListOf<Item>()
-        for (i in 1..10) {
-            val shipSameDay = i < 3 || i == 7;
+        val n = Random.nextInt(15, 26)
+        for (i in 1..n) {
+            val shipSameDay = Random.nextInt(1, 4) == 1;
             items.add(
                 Item(
                     name = "Item Name $i",
                     sameDayShipping = shipSameDay,
-                    price = Random.nextInt(10, 100) * 10.00,
+                    price = Random.nextInt(1, 100) * 10f,
                 )
             )
         }

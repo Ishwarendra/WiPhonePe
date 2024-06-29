@@ -29,14 +29,14 @@ import com.example.wiphonepe.viewmodel.ItemViewModel
 
 @Composable
 fun SearchBar(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    shape: RoundedCornerShape = RoundedCornerShape(100),
+    searchBarColor: Color = Color(0XFFE8E8E8)
 ) {
     val focusManager = LocalFocusManager.current
 
     val viewModel: ItemViewModel = viewModel(factory = ItemViewModel.Factory)
     val searchText by viewModel.searchText.collectAsState()
-
-    val searchBarColor = Color(0XFFE8E8E8)
 
     OutlinedTextField(
         value = searchText,
@@ -61,10 +61,10 @@ fun SearchBar(
                 tint = Color.Gray
             )
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 12.dp),
-        shape = RoundedCornerShape(100),
+        shape = shape,
         colors = TextFieldDefaults.colors(
             focusedContainerColor = searchBarColor,
             unfocusedContainerColor = searchBarColor,

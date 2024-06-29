@@ -9,7 +9,7 @@ import com.example.wiphonepe.R
 
 @Composable
 fun PriceTag(
-    price: Double,
+    price: Float,
     modifier: Modifier = Modifier,
     boldText: Boolean = false
 ) {
