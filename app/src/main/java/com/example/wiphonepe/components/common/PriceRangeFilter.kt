@@ -26,26 +26,24 @@ fun PriceRangeFilter(
     updatePriceRange: (Float, Float) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    var sliderPosition by remember { mutableStateOf(minPrice..maxPrice) }
     Column (
         modifier = modifier
     ) {
         RangeSlider(
-            value = sliderPosition,
+            value = minPrice..maxPrice,
             steps = 9,
-            onValueChange = { range -> sliderPosition = range },
-            valueRange = 0f..1000f,
-            onValueChangeFinished = {
-                updatePriceRange(sliderPosition.start, sliderPosition.endInclusive)
+            onValueChange = { range ->
+                updatePriceRange(range.start, range.endInclusive)
             },
+            valueRange = 0f..1000f,
         )
 
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Text(text = "${sliderPosition.start}")
-            Text(text = "${sliderPosition.endInclusive}")
+            Text(text = "$minPrice")
+            Text(text = "$maxPrice")
         }
     }
 }
